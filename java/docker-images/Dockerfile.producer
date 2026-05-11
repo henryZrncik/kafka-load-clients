@@ -1,0 +1,12 @@
+FROM eclipse-temurin:21-jre
+
+WORKDIR /app
+
+COPY clients/producer/target/kafka-producer-*-jar-with-dependencies.jar /app/kafka-producer.jar
+
+ENV BOOTSTRAP_SERVERS="localhost:9092" \
+    TOPIC="test-topic" \
+    MESSAGE_COUNT="1000" \
+    DELAY_MS="1000"
+
+CMD ["java", "-jar", "/app/kafka-producer.jar"]
