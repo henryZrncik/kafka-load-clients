@@ -1,0 +1,11 @@
+FROM eclipse-temurin:21-jre
+
+WORKDIR /app
+
+COPY clients/consumer/target/kafka-consumer-*-jar-with-dependencies.jar /app/kafka-consumer.jar
+
+ENV BOOTSTRAP_SERVERS="localhost:9092" \
+    TOPIC="test-topic" \
+    GROUP_ID="test-consumer-group"
+
+CMD ["java", "-jar", "/app/kafka-consumer.jar"]
